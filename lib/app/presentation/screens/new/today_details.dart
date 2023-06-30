@@ -78,12 +78,12 @@ class _TodayDetailsState extends State<TodayDetails> {
                     const HorizontalDivider(width: 500),
                     const DataRowWidget(
                       label: "Outlets captured today:",
-                      value: "12",
+                      value: "0",
                     ),
                     const HorizontalDivider(width: 500),
                     const DataRowWidget(
                       label: "Total for June:",
-                      value: "12",
+                      value: "0",
                     ),
                     const HorizontalDivider(width: 500),
                     const SizedBox(

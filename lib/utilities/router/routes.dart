@@ -4,4 +4,5 @@ class Routes {
   static const String details = '/details';
   static const String todayDetails = '/todayDetails';
   static const String dataCapture = '/dataCapture';
+  static const String options = "/options";
 }

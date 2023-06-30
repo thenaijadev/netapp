@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netapp/app/presentation/widgets/edit_bottom_sheet_widget.dart';
 import 'package:netapp/app/presentation/widgets/input_field_widget.dart';
 import 'package:netapp/app/presentation/widgets/title_text.dart';
+import 'package:netapp/utilities/constants.dart/app_colors.dart';
 import 'package:netapp/utilities/lists.dart';
 
 class OutletDetailsForm extends StatefulWidget {
@@ -40,10 +41,10 @@ class _OutletDetailsFormState extends State<OutletDetailsForm> {
               onChanged: (val) {}, label: "Region", options: regions()),
           DropDownInput(
               onChanged: (val) {}, label: "Channel", options: channels),
-          DropDownInput(
-              onChanged: (val) {},
-              label: "Off Trade Categories",
-              options: offTradeCategories()),
+          // DropDownInput(
+          //     onChanged: (val) {},
+          //     label: "Off Trade Categories",
+          //     options: offTradeCategories()),
           DropDownInput(
               onChanged: (val) {},
               label: "Sub Channels",
@@ -66,23 +67,37 @@ class _OutletDetailsFormState extends State<OutletDetailsForm> {
           const SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-            onPressed: () {
-              widget.controller.animateTo(1,
-                  duration: const Duration(seconds: 1), curve: Curves.bounceIn);
-            },
-            style: ButtonStyle(
-                backgroundColor: MaterialStateColor.resolveWith(
-                    (states) => const Color(0xff004F9F))),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 110.0),
-              child: TextWidget(
-                text: "Continue",
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Container(
+              width: 272,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: AppColors.inputBorder),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 0, 44, 139),
+                    ),
+                  ),
+                  onPressed: () {
+                    widget.controller.animateTo(1,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.bounceIn);
+                  },
+                  child: const TextWidget(
+                    text: "Next",
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

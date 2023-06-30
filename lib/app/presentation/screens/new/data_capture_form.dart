@@ -47,109 +47,112 @@ class _DataCatureScreenState extends State<DataCatureScreen>
     String date = DateFormat.yMMMMd().format(now);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.inputBorder, width: 2)),
-              child: ListView(
-                children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Center(
-                    child: TextWidget(
-                      text: "Data Capture Form",
-                      color: Color.fromARGB(255, 0, 44, 139),
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: Center(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.inputBorder, width: 2)),
+                child: ListView(
+                  children: [
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const HeaderUnderline(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: AppColors.inputBorder, width: 1),
+                    const Center(
+                      child: TextWidget(
+                        text: "Data Capture Form",
+                        color: Color.fromARGB(255, 0, 44, 139),
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    child: Column(
-                      children: [
-                        const HorizontalDivider(width: 500),
-                        StreamBuilder<int>(
-                            stream: _stopWatchTimer.rawTime,
-                            builder: (context, snap) {
-                              final value = snap.data;
-                              final displayTime = StopWatchTimer.getDisplayTime(
-                                  value!,
-                                  milliSecond: false);
-                              return DataRowWidget(
-                                label: "Total time spend:",
-                                value: displayTime,
-                              );
-                            }),
-                        const HorizontalDivider(width: 500),
-                        const DataRowWidget(
-                          label: "Outlet captured by",
-                          value: "12",
-                        ),
-                        const HorizontalDivider(width: 500),
-                        DataRowWidget(
-                          label: "Capture date",
-                          value: date,
-                        ),
-                        const HorizontalDivider(width: 500),
-                        DataRowWidget(
-                          label: "Gps Co-ordinates",
-                          value: position == null
-                              ? "Getting Co-ordinates..."
-                              : "${position?.latitude},${position?.longitude} ",
-                        ),
-                        const HorizontalDivider(width: 500),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TabBar(
-                            controller: controller,
-                            indicatorColor:
-                                const Color.fromARGB(255, 0, 44, 139),
-                            indicatorWeight: 2,
-                            tabs: const [
-                              TextWidget(
-                                text: "Outlet details",
-                                fontSize: 14,
-                              ),
-                              TextWidget(
-                                text: "Trade visit",
-                                fontSize: 14,
-                              ),
-                              TextWidget(
-                                text: "Outlet details",
-                                fontSize: 14,
-                              ),
-                            ]),
-                        SizedBox(
-                          height: 1300,
-                          child: TabBarView(
-                            controller: controller,
-                            children: [
-                              OutletDetailsForm(controller: controller),
-                              const PageViewWidget(),
-                              const TextWidget(text: "Yoo"),
-                            ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const HeaderUnderline(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: AppColors.inputBorder, width: 1),
+                      ),
+                      child: Column(
+                        children: [
+                          const HorizontalDivider(width: 500),
+                          StreamBuilder<int>(
+                              stream: _stopWatchTimer.rawTime,
+                              builder: (context, snap) {
+                                final value = snap.data;
+                                final displayTime =
+                                    StopWatchTimer.getDisplayTime(value!,
+                                        milliSecond: false);
+                                return DataRowWidget(
+                                  label: "Total time spend:",
+                                  value: displayTime,
+                                );
+                              }),
+                          const HorizontalDivider(width: 500),
+                          const DataRowWidget(
+                            label: "Outlet captured by",
+                            value: "12",
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                          const HorizontalDivider(width: 500),
+                          DataRowWidget(
+                            label: "Capture date",
+                            value: date,
+                          ),
+                          const HorizontalDivider(width: 500),
+                          DataRowWidget(
+                            label: "Gps Co-ordinates",
+                            value: position == null
+                                ? "Getting Co-ordinates..."
+                                : "${position?.latitude},${position?.longitude} ",
+                          ),
+                          const HorizontalDivider(width: 500),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TabBar(
+                              controller: controller,
+                              indicatorColor:
+                                  const Color.fromARGB(255, 0, 44, 139),
+                              indicatorWeight: 2,
+                              tabs: const [
+                                TextWidget(
+                                  text: "Outlet details",
+                                  fontSize: 14,
+                                ),
+                                TextWidget(
+                                  text: "Trade visit",
+                                  fontSize: 14,
+                                ),
+                                TextWidget(
+                                  text: "Outlet details",
+                                  fontSize: 14,
+                                ),
+                              ]),
+                          SizedBox(
+                            height: 1550,
+                            child: TabBarView(
+                              physics: const NeverScrollableScrollPhysics(),
+                              controller: controller,
+                              children: [
+                                OutletDetailsForm(controller: controller),
+                                const PageViewWidget(),
+                                const TextWidget(text: "Yoo"),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

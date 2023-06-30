@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(
-                top: 150.0, left: 20, right: 20, bottom: 110),
+                top: 120.0, left: 20, right: 20, bottom: 110),
             child: Card(
               elevation: 50,
               child: Padding(
@@ -80,8 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, Routes.todayDetails);
+                          // Navigator.pushReplacementNamed(
+                          //     context, Routes.todayDetails);
+                          Navigator.popAndPushNamed(context, Routes.options);
                         },
                         style: ButtonStyle(
                             backgroundColor: MaterialStateColor.resolveWith(
@@ -98,20 +99,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith(
-                                (states) => const Color(0xff6C757D))),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 60.0),
-                          child: TextWidget(
-                            text: "Register New Outlet",
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
+                      // ElevatedButton(
+                      //   onPressed: () {},
+                      //   style: ButtonStyle(
+                      //       backgroundColor: MaterialStateColor.resolveWith(
+                      //           (states) => const Color(0xff6C757D))),
+                      //   child: const Padding(
+                      //     padding: EdgeInsets.symmetric(horizontal: 60.0),
+                      //     child: TextWidget(
+                      //       text: "Register New Outlet",
+                      //       color: Colors.white,
+                      //       fontWeight: FontWeight.w400,
+                      //     ),
+                      //   ),
+                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

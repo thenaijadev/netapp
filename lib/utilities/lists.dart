@@ -200,8 +200,17 @@ List<String> geopoliticalRegions = [
   'South West',
 ];
 
+List<String> offTradeCategoriesList = [
+  'Modern trade',
+  'Specialised wine shop',
+  'Social event vendor',
+  'Wholesaler',
+  'E-retail',
+];
+
 List<String> subChannelsList = [
   'Supermarket',
+  'Modern trade',
   'Specialised wine shop',
   'E-retail',
   'Wholesalers',
@@ -219,14 +228,6 @@ List<DropDownValueModel> subChannels() {
       subChannelsList.map((e) => DropDownValueModel(name: e, value: e));
   return subChannels.toList();
 }
-
-List<String> offTradeCategoriesList = [
-  'Modern trade',
-  'Specialised wine shop',
-  'Social event vendor',
-  'Wholesaler',
-  'E-retail',
-];
 
 List<DropDownValueModel> offTradeCategories() {
   final offTradeCategories =
@@ -404,3 +405,123 @@ List<Map<String, dynamic>> productList = [
     'Channel': 'On-trade & off-trade',
   }
 ];
+
+List<String> brandsList = [
+  'Gerard Bertrand',
+  'Van Loveren',
+  'Proximo',
+  'Les Bienheureux',
+  'BPHR',
+  'Georges Duboeuf',
+  'Haussmann',
+  'Netter',
+  'Brotte',
+  'Nutresa',
+  'Moet Hennessy',
+];
+
+List<DropDownValueModel> brandsDropdownList() {
+  final brands = brandsList.map((e) => DropDownValueModel(name: e, value: e));
+  return brands.toList();
+}
+
+List<String> sku = [
+  '6 Sens',
+  'Art De Vivre',
+  'Cote Des Roses',
+  'Cigalus',
+  'Beacon Hill',
+  'Papillon',
+  'Bushmills',
+  'Embargo',
+  'Escudo Rojo Gran Reserva',
+  'Escudo Rojo Reserva',
+  'Georges Duboeuf',
+  'Haussmann',
+  'J Grandet',
+  'Jose Cuervo',
+  'La fiole Chateauneuf du pape',
+  'La fiole Cote du rhone',
+  'Mouton Cadet Bordeaux Red',
+  'Mouton Cadet Sauvignon Blanc',
+  'Reserve Mouton Cadet',
+  'Pierre Grandet',
+  'Super 2',
+  'Hennessy VS',
+  'Hennessy VSOP',
+  'Hennessy XO',
+  'Moet brut',
+  'Moet Nectar Imp Rosé',
+  'Dom Perignon',
+  'Veuve Clicquot',
+];
+
+List<DropDownValueModel> skus() {
+  final skus = sku.map((e) => DropDownValueModel(name: e, value: e));
+  return skus.toList();
+}
+
+final List<String> drinkCategory = ["WINES", "SPIRITS", "FOOD"];
+
+List<DropDownValueModel> drinkCategories() {
+  final drinkCategories =
+      drinkCategory.map((e) => DropDownValueModel(name: e, value: e));
+  return drinkCategories.toList();
+}
+
+List<String> wines = [
+  '6 Sens',
+  'Art De Vivre',
+  'Cote Des Roses',
+  'Cigalus',
+  'Beacon Hill',
+  'Papillon',
+  'Escudo Rojo Gran Reserva',
+  'Escudo Rojo Reserva',
+  'Georges Duboeuf',
+  'Haussmann',
+  'J Grandet',
+  'La fiole Chateauneuf du pape',
+  'La fiole Cote du rhone',
+  'Mouton Cadet Bordeaux Red',
+  'Mouton Cadet Sauvignon Blanc',
+  'Reserve Mouton Cadet',
+  'Pierre Grandet',
+  'Moet brut',
+  'Moet Nectar Imp Rosé',
+  'Dom Perignon',
+  'Veuve Clicquot',
+];
+
+List<String> spirits = [
+  'Bushmills',
+  'Embargo',
+  'Jose Cuervo',
+  'Hennessy VS',
+  'Hennessy VSOP',
+  'Hennessy XO',
+];
+
+List<String> foods = ["Super 2"];
+
+getCategory(String product) {
+  if (wines.contains(product)) {
+    return "WINES";
+  } else if (spirits.contains(product)) {
+    return "SPIRITS";
+  } else if (foods.contains(product)) {
+    return "FOOD";
+  } else {
+    return "";
+  }
+}
+
+getChannel(String product) {
+  if (product == "Super 2") {
+    return "Off-trade";
+  } else if (product != "Super 2") {
+    return "On-trade & off-trade";
+  } else {
+    return "";
+  }
+}

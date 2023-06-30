@@ -5,19 +5,11 @@ import 'package:netapp/app/presentation/widgets/input_field_widget.dart';
 import 'package:netapp/app/presentation/widgets/title_text.dart';
 import 'package:netapp/utilities/constants.dart/app_colors.dart';
 import 'package:netapp/utilities/lists.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TradeVisitForm extends StatefulWidget {
-  const TradeVisitForm(
-      {super.key,
-      required this.brand,
-      required this.category,
-      required this.sku,
-      required this.channel});
-  final String brand;
-  final String category;
-  final String sku;
-  final String channel;
+  const TradeVisitForm({
+    super.key,
+  });
 
   @override
   State<TradeVisitForm> createState() => _TradeVisitFormState();
@@ -29,39 +21,83 @@ class _TradeVisitFormState extends State<TradeVisitForm> {
   final formfieldkey_3 = GlobalKey<FormFieldState>();
   final formfieldkey_4 = GlobalKey<FormFieldState>();
   final formfieldkey_5 = GlobalKey<FormFieldState>();
-
+  String sku = "";
   @override
   Widget build(BuildContext context) {
-    final brand = widget.brand;
-    final sku = widget.sku;
-    final category = widget.category;
-    final channel = widget.channel;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(children: [
             const HorizontalDivider(width: 500),
-            DataRowWidget(
-              label: "Brand:",
-              value: brand,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+              child: TextWidget(
+                text: "Enter details on relevant brands and products",
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const HorizontalDivider(width: 500),
-            DataRowWidget(
-              label: "Sku",
-              value: sku,
+            DropDownInput(
+                onChanged: (val) {
+                  setState(() {});
+                },
+                enableSearch: true,
+                label: "Brand:",
+                options: brandsDropdownList()),
+            DropDownInput(
+                onChanged: (val) {
+                  setState(() {
+                    sku = val.name.toString();
+                  });
+                },
+                enableSearch: true,
+                label: "SKU:",
+                options: skus()),
+            const SizedBox(
+              height: 20,
             ),
-            const HorizontalDivider(width: 500),
-            DataRowWidget(
-              label: "Category",
-              value: category,
+            const Padding(
+              padding: EdgeInsets.only(right: 215.0, bottom: 4),
+              child: TextWidget(
+                text: "Category:",
+                fontSize: 15,
+                color: Color.fromARGB(255, 110, 111, 117),
+              ),
             ),
-            const HorizontalDivider(width: 500),
-            DataRowWidget(
-              label: "Channel",
-              value: channel,
+            Container(
+              height: 40,
+              width: 278,
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.inputBorder),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 10),
+                child: TextWidget(text: getCategory(sku)),
+              ),
             ),
-            const HorizontalDivider(width: 500),
+            const Padding(
+              padding: EdgeInsets.only(right: 215.0, bottom: 4, top: 15),
+              child: TextWidget(
+                text: "Channel:",
+                fontSize: 15,
+                color: Color.fromARGB(255, 110, 111, 117),
+              ),
+            ),
+            Container(
+              height: 40,
+              width: 278,
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.inputBorder),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 10),
+                child: TextWidget(text: getChannel(sku)),
+              ),
+            ),
             DropDownInput(
                 onChanged: (val) {},
                 label: "Is this brand available?",
@@ -144,13 +180,6 @@ class PageViewWidget extends StatefulWidget {
 }
 
 class _PageViewWidgetState extends State<PageViewWidget> {
-  final products = productList
-      .map((e) => TradeVisitForm(
-          brand: e["Brand"],
-          category: e["Category"],
-          sku: e["Sku"],
-          channel: e["Channel"]))
-      .toList();
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController();
@@ -160,15 +189,16 @@ class _PageViewWidgetState extends State<PageViewWidget> {
       ),
       child: Column(
         children: [
-          SmoothPageIndicator(
-              controller: controller,
-              count: products.length,
-              effect: const ScrollingDotsEffect(dotWidth: 5, dotHeight: 8),
-              onDotClicked: (index) {}),
+          // SmoothPageIndicator(
+          //     controller: controller,
+          //     count: products.length,
+          //     effect: const ScrollingDotsEffect(dotWidth: 5, dotHeight: 8),
+          //     onDotClicked: (index) {}),
           Flexible(
             child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: controller,
-              children: products,
+              children: const [TradeVisitForm()],
             ),
           ),
           Padding(
@@ -190,8 +220,8 @@ class _PageViewWidgetState extends State<PageViewWidget> {
                   ),
                   onPressed: () {
                     controller.nextPage(
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.linear);
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.decelerate);
                   },
                   child: const TextWidget(
                     text: "Next",

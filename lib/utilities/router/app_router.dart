@@ -3,6 +3,7 @@ import 'package:netapp/app/presentation/screens/details.dart';
 import 'package:netapp/app/presentation/screens/error.dart';
 import 'package:netapp/app/presentation/screens/home.dart';
 import 'package:netapp/app/presentation/screens/new/data_capture_form.dart';
+import 'package:netapp/app/presentation/screens/new/options.dart';
 import 'package:netapp/app/presentation/screens/new/today_details.dart';
 import 'package:netapp/app/presentation/screens/products.dart';
 import 'package:netapp/utilities/router/routes.dart';
@@ -27,6 +28,10 @@ class AppRouter {
       case Routes.dataCapture:
         return MaterialPageRoute(
           builder: (_) => const DataCatureScreen(),
+        );
+      case Routes.options:
+        return MaterialPageRoute(
+          builder: (_) => const Options(),
         );
       case Routes.details:
         var data = routeSettings.arguments as Map;
