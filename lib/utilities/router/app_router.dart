@@ -4,6 +4,7 @@ import 'package:netapp/app/presentation/screens/error.dart';
 import 'package:netapp/app/presentation/screens/home.dart';
 import 'package:netapp/app/presentation/screens/new/data_capture_form.dart';
 import 'package:netapp/app/presentation/screens/new/options.dart';
+import 'package:netapp/app/presentation/screens/new/outlet_data.dart';
 import 'package:netapp/app/presentation/screens/new/today_details.dart';
 import 'package:netapp/app/presentation/screens/products.dart';
 import 'package:netapp/utilities/router/routes.dart';
@@ -41,11 +42,11 @@ class AppRouter {
             data: data,
           ),
         );
-      // case Routes.payNowScreen:
-      //   var data = routeSettings.arguments as CardModel;
-      //   return MaterialPageRoute(
-      //     builder: (_) => PayNowScreen(card: data),
-      //   );
+
+      case Routes.outlets:
+        return MaterialPageRoute(
+          builder: (_) => const OutletData(),
+        );
 
       default:
         return MaterialPageRoute(

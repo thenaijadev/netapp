@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:netapp/app/data/models/outlet.dart';
 import 'package:netapp/app/data/models/product.dart';
 
-class OutletNotifier extends StateNotifier<Outlet> {
+class OutletNotifier extends StateNotifier<List<Outlet>> {
   Outlet? _outlet;
 
-  OutletNotifier() : super(Outlet());
+  OutletNotifier() : super([]);
 
   Outlet? get outlet => _outlet;
 
@@ -46,23 +46,25 @@ class OutletNotifier extends StateNotifier<Outlet> {
         managerName: managerName,
         managerPhoneNumber: managerPhoneNumber,
         supplier: supplier);
-
-    print(_outlet.toString());
-    state = _outlet;
+    _outlets.add(_outlet!);
+    state = _outlets;
+    print(state);
   }
 
   void addProductToList(
-      {brand,
-      sku,
-      category,
-      isAvailable,
-      isOutOfStock,
-      isNewListing,
-      price,
-      hasPriceChanged,
-      newPrice,
+      {required brand,
+      required sku,
+      required channel,
+      required category,
+      required isAvailable,
+      required isOutOfStock,
+      required isNewListing,
+      required price,
+      required hasPriceChanged,
+      required newPrice,
       image}) {
     final Product product = Product(
+        channel: channel,
         brand: brand,
         sku: sku,
         category: category,
@@ -75,7 +77,11 @@ class OutletNotifier extends StateNotifier<Outlet> {
         image: image);
 
     products.add(product);
-
-    state = state.copyWith(products: products);
+    final lastItem = state.last;
+    final updatedItem = lastItem.copyWith(products: products);
+    final stateList = state;
+    stateList.remove(lastItem);
+    stateList.add(updatedItem);
+    state = stateList;
   }
 }

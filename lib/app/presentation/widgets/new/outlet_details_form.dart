@@ -21,17 +21,35 @@ class OutletDetailsForm extends ConsumerStatefulWidget {
 class _OutletDetailsFormState extends ConsumerState<OutletDetailsForm> {
   final formfieldkey_1 = GlobalKey<FormFieldState>();
   final formfieldkey_2 = GlobalKey<FormFieldState>();
-
   final formfieldkey_3 = GlobalKey<FormFieldState>();
   final formfieldkey_4 = GlobalKey<FormFieldState>();
   final formfieldkey_5 = GlobalKey<FormFieldState>();
   String? state;
   String? city;
-
   String? channel;
-
   String? region;
   String? subChannel;
+
+  void createOutlet() {
+    final outlet = ref.watch(outletProvider.notifier);
+    outlet.createOutlet(
+        date: DateFormat.yMMMMd().format(DateTime.now()),
+        capturedBy: widget.data["capturedBy"],
+        latitude: widget.data["latitude"],
+        longitude: widget.data["longitude"],
+        name: formfieldkey_1.currentState?.value,
+        managerName: formfieldkey_3.currentState?.value,
+        managerPhoneNumber: formfieldkey_4.currentState?.value,
+        supplier: formfieldkey_5.currentState?.value,
+        address: formfieldkey_2.currentState?.value,
+        state: state!,
+        city: city!,
+        region: region!,
+        channel: channel!,
+        subChannel: subChannel!);
+    widget.controller.animateTo(1,
+        duration: const Duration(seconds: 1), curve: Curves.bounceIn);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,23 +67,29 @@ class _OutletDetailsFormState extends ConsumerState<OutletDetailsForm> {
               onChanged: (val) {},
               textFieldkey: formfieldkey_2),
           DropDownInput(
-              onChanged: (val) {
-                state = val.name;
-              },
-              label: "State",
-              options: states()),
+            onChanged: (val) {
+              state = val.name;
+            },
+            label: "State",
+            options: states(),
+            enableSearch: true,
+          ),
           DropDownInput(
-              onChanged: (val) {
-                city = val.name;
-              },
-              label: "City",
-              options: cities()),
+            onChanged: (val) {
+              city = val.name;
+            },
+            label: "City",
+            enableSearch: true,
+            options: cities(),
+          ),
           DropDownInput(
-              onChanged: (val) {
-                region = val.name;
-              },
-              label: "Region",
-              options: regions()),
+            onChanged: (val) {
+              region = val.name;
+            },
+            label: "Region",
+            enableSearch: true,
+            options: regions(),
+          ),
           DropDownInput(
               onChanged: (val) {
                 channel = val.name;
@@ -73,11 +97,13 @@ class _OutletDetailsFormState extends ConsumerState<OutletDetailsForm> {
               label: "Channel",
               options: channels),
           DropDownInput(
-              onChanged: (val) {
-                subChannel = val.name;
-              },
-              label: "Sub Channels",
-              options: subChannels()),
+            onChanged: (val) {
+              subChannel = val.name;
+            },
+            label: "Sub Channels",
+            enableSearch: true,
+            options: subChannels(),
+          ),
           InputFieldWidget(
               label: "Name of Manager",
               hintText: "",
@@ -114,25 +140,7 @@ class _OutletDetailsFormState extends ConsumerState<OutletDetailsForm> {
                     ),
                   ),
                   onPressed: () async {
-                    final outlet = ref.watch(outletProvider.notifier);
-                    outlet.createOutlet(
-                        date: DateFormat.yMMMMd().format(DateTime.now()),
-                        capturedBy: widget.data["capturedBy"],
-                        latitude: widget.data["latitude"],
-                        longitude: widget.data["longitude"],
-                        name: formfieldkey_1.currentState?.value,
-                        managerName: formfieldkey_3.currentState?.value,
-                        managerPhoneNumber: formfieldkey_4.currentState?.value,
-                        supplier: formfieldkey_5.currentState?.value,
-                        address: formfieldkey_2.currentState?.value,
-                        state: state!,
-                        city: city!,
-                        region: region!,
-                        channel: channel!,
-                        subChannel: subChannel!);
-                    widget.controller.animateTo(1,
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.bounceIn);
+                    createOutlet();
                   },
                   child: const TextWidget(
                     text: "Next",

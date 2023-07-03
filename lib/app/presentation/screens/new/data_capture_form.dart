@@ -25,7 +25,7 @@ class _DataCatureScreenState extends State<DataCatureScreen>
   @override
   void initState() {
     _stopWatchTimer.onStartTimer();
-    controller = TabController(length: 3, vsync: this);
+    controller = TabController(length: 2, vsync: this);
     getLocation();
     super.initState();
   }
@@ -133,10 +133,6 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                                   text: "Trade visit",
                                   fontSize: 14,
                                 ),
-                                TextWidget(
-                                  text: "Outlet details",
-                                  fontSize: 14,
-                                ),
                               ]),
                           SizedBox(
                             height: 1550,
@@ -154,7 +150,6 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                                   },
                                 ),
                                 const PageViewWidget(),
-                                const TextWidget(text: "Yoo"),
                               ],
                             ),
                           ),

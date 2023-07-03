@@ -11,8 +11,8 @@ List<DropDownValueModel> channels = [
 ];
 
 List<DropDownValueModel> yesOrNo = [
-  const DropDownValueModel(name: 'Yes', value: "Yes"),
-  const DropDownValueModel(name: 'No', value: "No"),
+  const DropDownValueModel(name: 'Yes', value: true),
+  const DropDownValueModel(name: 'No', value: false),
 ];
 
 final List<String> nigerianStates = [

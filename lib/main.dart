@@ -29,11 +29,13 @@ class MyApp extends StatelessWidget {
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        initialRoute: "/",
-        onGenerateRoute: appRouter.onGenerateRoute,
+      child: ProviderScope(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          initialRoute: "/",
+          onGenerateRoute: appRouter.onGenerateRoute,
+        ),
       ),
     );
   }
