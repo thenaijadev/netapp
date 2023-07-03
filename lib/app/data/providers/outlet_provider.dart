@@ -23,7 +23,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
       required longitude,
       required name,
       required address,
-      required state,
+      required stateCity,
       required city,
       required region,
       required channel,
@@ -38,7 +38,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
         longitude: longitude,
         name: name,
         address: address,
-        state: state,
+        state: stateCity,
         city: city,
         region: region,
         channel: channel,
@@ -46,9 +46,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
         managerName: managerName,
         managerPhoneNumber: managerPhoneNumber,
         supplier: supplier);
-    _outlets.add(_outlet!);
-    state = _outlets;
-    print(state);
+    state.add(_outlet!);
   }
 
   void addProductToList(
@@ -77,10 +75,12 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
         image: image);
 
     products.add(product);
-    final lastItem = state.last;
+    List<Outlet> stateList = state;
+
+    final lastItem = stateList.last;
     final updatedItem = lastItem.copyWith(products: products);
-    final stateList = state;
-    stateList.remove(lastItem);
+
+    stateList.removeAt(stateList.length - 1);
     stateList.add(updatedItem);
     state = stateList;
   }

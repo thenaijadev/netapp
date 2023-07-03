@@ -42,13 +42,13 @@ class _OutletDetailsFormState extends ConsumerState<OutletDetailsForm> {
         managerPhoneNumber: formfieldkey_4.currentState?.value,
         supplier: formfieldkey_5.currentState?.value,
         address: formfieldkey_2.currentState?.value,
-        state: state!,
+        stateCity: state!,
         city: city!,
         region: region!,
         channel: channel!,
         subChannel: subChannel!);
-    widget.controller.animateTo(1,
-        duration: const Duration(seconds: 1), curve: Curves.bounceIn);
+    // widget.controller.animateTo(1,
+    //     duration: const Duration(seconds: 1), curve: Curves.bounceIn);
   }
 
   @override
