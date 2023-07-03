@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:netapp/app/presentation/screens/new/today_details.dart';
+import 'package:netapp/app/presentation/widgets/new/header_underLine.dart';
 import 'package:netapp/app/presentation/widgets/new/outlet_details_form.dart';
 import 'package:netapp/app/presentation/widgets/new/trade_visit_form.dart';
 import 'package:netapp/app/presentation/widgets/title_text.dart';
@@ -45,6 +46,7 @@ class _DataCatureScreenState extends State<DataCatureScreen>
     var now = DateTime.now();
 
     String date = DateFormat.yMMMMd().format(now);
+    String displayTime;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -88,11 +90,11 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                               stream: _stopWatchTimer.rawTime,
                               builder: (context, snap) {
                                 final value = snap.data;
-                                final displayTime =
-                                    StopWatchTimer.getDisplayTime(value!,
-                                        milliSecond: false);
+                                displayTime = StopWatchTimer.getDisplayTime(
+                                    value!,
+                                    milliSecond: false);
                                 return DataRowWidget(
-                                  label: "Total time spend:",
+                                  label: "Total time spent:",
                                   value: displayTime,
                                 );
                               }),
@@ -142,7 +144,15 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                               physics: const NeverScrollableScrollPhysics(),
                               controller: controller,
                               children: [
-                                OutletDetailsForm(controller: controller),
+                                OutletDetailsForm(
+                                  controller: controller,
+                                  data: {
+                                    "capturedBy:": "Okwor",
+                                    "date": date,
+                                    "latitude": position?.latitude,
+                                    "longitude": position?.longitude
+                                  },
+                                ),
                                 const PageViewWidget(),
                                 const TextWidget(text: "Yoo"),
                               ],
@@ -158,40 +168,6 @@ class _DataCatureScreenState extends State<DataCatureScreen>
           ),
         ),
       ),
-    );
-  }
-}
-
-class HeaderUnderline extends StatelessWidget {
-  const HeaderUnderline({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: 5,
-          width: 100,
-          decoration: const BoxDecoration(
-            color: AppColors.hintColor,
-          ),
-        ),
-        Container(
-          height: 5,
-          width: 150,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 0, 44, 139),
-          ),
-        ),
-        Container(
-          height: 5,
-          width: 100,
-          decoration: const BoxDecoration(
-            color: AppColors.hintColor,
-          ),
-        )
-      ],
     );
   }
 }

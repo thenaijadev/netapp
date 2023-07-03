@@ -4,34 +4,32 @@ import 'package:netapp/app/data/models/product.dart';
 
 class Outlet {
   Outlet(
-      {required this.date,
-      required this.totalTimeSpent,
-      required this.capturedBy,
-      required this.latitude,
-      required this.longitude,
-      required this.name,
-      required this.address,
-      required this.state,
-      required this.city,
-      required this.region,
-      required this.channel,
-      required this.subChannel,
-      required this.managerName,
-      required this.managerPhoneNumber,
-      required this.supplier,
+      {this.date,
+      this.capturedBy,
+      this.latitude,
+      this.longitude,
+      this.name,
+      this.address,
+      this.state,
+      this.city,
+      this.region,
+      this.channel,
+      this.subChannel,
+      this.managerName,
+      this.managerPhoneNumber,
+      this.supplier,
       this.products});
-  final String date;
-  final String totalTimeSpent;
-  final String capturedBy;
-  final double latitude;
-  final double longitude;
-  final String name;
-  final String address;
-  final String state;
-  final String city;
-  final String region;
-  final String channel;
-  final String subChannel;
+  final String? date;
+  final String? capturedBy;
+  final double? latitude;
+  final double? longitude;
+  final String? name;
+  final String? address;
+  final String? state;
+  final String? city;
+  final String? region;
+  final String? channel;
+  final String? subChannel;
   final String? managerName;
   final String? managerPhoneNumber;
   final String? supplier;
@@ -39,7 +37,6 @@ class Outlet {
 
   Outlet copyWith({
     String? date,
-    String? totalTimeSpent,
     String? capturedBy,
     double? latitude,
     double? longitude,
@@ -56,22 +53,26 @@ class Outlet {
     List<Product>? products,
   }) {
     return Outlet(
-      date: this.date,
-      totalTimeSpent: this.totalTimeSpent,
-      capturedBy: this.capturedBy,
-      latitude: this.latitude,
-      longitude: this.longitude,
-      name: this.name,
-      address: this.address,
-      state: this.state,
-      city: this.city,
-      region: this.region,
-      channel: this.channel,
-      subChannel: this.subChannel,
-      managerName: this.managerName,
-      managerPhoneNumber: this.managerPhoneNumber,
-      supplier: this.supplier,
-      products: this.products,
+      date: date ?? this.date,
+      capturedBy: capturedBy ?? this.capturedBy,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      name: name ?? this.name,
+      address: address ?? this.address,
+      state: state ?? this.state,
+      city: city ?? this.city,
+      region: region ?? this.region,
+      channel: channel ?? this.channel,
+      subChannel: subChannel ?? this.subChannel,
+      managerName: managerName ?? this.managerName,
+      managerPhoneNumber: managerPhoneNumber ?? this.managerPhoneNumber,
+      supplier: supplier ?? this.supplier,
+      products: products ?? this.products,
     );
+  }
+
+  @override
+  String toString() {
+    return 'Outlet(date: $date, capturedBy: $capturedBy, latitude: $latitude, longitude: $longitude, name: $name, address: $address, state: $state, city: $city, region: $region, channel: $channel, subChannel: $subChannel, managerName: $managerName, managerPhoneNumber: $managerPhoneNumber, supplier: $supplier, products: $products)';
   }
 }

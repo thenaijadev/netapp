@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:netapp/app/presentation/widgets/edit_bottom_sheet_widget.dart';
 import 'package:netapp/app/presentation/widgets/input_field_widget.dart';
 import 'package:netapp/app/presentation/widgets/title_text.dart';
+import 'package:netapp/app/providers/state_providers.dart';
 import 'package:netapp/utilities/constants.dart/app_colors.dart';
 import 'package:netapp/utilities/lists.dart';
 
-class OutletDetailsForm extends StatefulWidget {
-  const OutletDetailsForm({super.key, required this.controller});
+class OutletDetailsForm extends ConsumerStatefulWidget {
+  const OutletDetailsForm(
+      {super.key, required this.controller, required this.data});
   final TabController controller;
+  final Map<String, dynamic> data;
+
   @override
-  State<OutletDetailsForm> createState() => _OutletDetailsFormState();
+  ConsumerState<OutletDetailsForm> createState() => _OutletDetailsFormState();
 }
 
-class _OutletDetailsFormState extends State<OutletDetailsForm> {
+class _OutletDetailsFormState extends ConsumerState<OutletDetailsForm> {
   final formfieldkey_1 = GlobalKey<FormFieldState>();
   final formfieldkey_2 = GlobalKey<FormFieldState>();
 
   final formfieldkey_3 = GlobalKey<FormFieldState>();
   final formfieldkey_4 = GlobalKey<FormFieldState>();
   final formfieldkey_5 = GlobalKey<FormFieldState>();
+  String? state;
+  String? city;
+
+  String? channel;
+
+  String? region;
+  String? subChannel;
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +48,34 @@ class _OutletDetailsFormState extends State<OutletDetailsForm> {
               hintText: "",
               onChanged: (val) {},
               textFieldkey: formfieldkey_2),
-          DropDownInput(onChanged: (val) {}, label: "State", options: states()),
-          DropDownInput(onChanged: (val) {}, label: "City", options: cities()),
           DropDownInput(
-              onChanged: (val) {}, label: "Region", options: regions()),
+              onChanged: (val) {
+                state = val.name;
+              },
+              label: "State",
+              options: states()),
           DropDownInput(
-              onChanged: (val) {}, label: "Channel", options: channels),
-          // DropDownInput(
-          //     onChanged: (val) {},
-          //     label: "Off Trade Categories",
-          //     options: offTradeCategories()),
+              onChanged: (val) {
+                city = val.name;
+              },
+              label: "City",
+              options: cities()),
           DropDownInput(
-              onChanged: (val) {},
+              onChanged: (val) {
+                region = val.name;
+              },
+              label: "Region",
+              options: regions()),
+          DropDownInput(
+              onChanged: (val) {
+                channel = val.name;
+              },
+              label: "Channel",
+              options: channels),
+          DropDownInput(
+              onChanged: (val) {
+                subChannel = val.name;
+              },
               label: "Sub Channels",
               options: subChannels()),
           InputFieldWidget(
@@ -84,7 +113,23 @@ class _OutletDetailsFormState extends State<OutletDetailsForm> {
                       Color.fromARGB(255, 0, 44, 139),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    final outlet = ref.watch(outletProvider.notifier);
+                    outlet.createOutlet(
+                        date: DateFormat.yMMMMd().format(DateTime.now()),
+                        capturedBy: widget.data["capturedBy"],
+                        latitude: widget.data["latitude"],
+                        longitude: widget.data["longitude"],
+                        name: formfieldkey_1.currentState?.value,
+                        managerName: formfieldkey_3.currentState?.value,
+                        managerPhoneNumber: formfieldkey_4.currentState?.value,
+                        supplier: formfieldkey_5.currentState?.value,
+                        address: formfieldkey_2.currentState?.value,
+                        state: state!,
+                        city: city!,
+                        region: region!,
+                        channel: channel!,
+                        subChannel: subChannel!);
                     widget.controller.animateTo(1,
                         duration: const Duration(seconds: 1),
                         curve: Curves.bounceIn);
@@ -100,45 +145,6 @@ class _OutletDetailsFormState extends State<OutletDetailsForm> {
           )
         ],
       ),
-    );
-  }
-}
-
-enum SingingCharacter { lafayette, jefferson }
-
-class YesNoRadio extends StatefulWidget {
-  const YesNoRadio({super.key});
-
-  @override
-  State<YesNoRadio> createState() => _YesNoRadioState();
-}
-
-SingingCharacter? _character = SingingCharacter.lafayette;
-
-class _YesNoRadioState extends State<YesNoRadio> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Radio<SingingCharacter>(
-          value: SingingCharacter.lafayette,
-          groupValue: _character,
-          onChanged: (SingingCharacter? value) {
-            setState(() {
-              _character = value;
-            });
-          },
-        ),
-        Radio<SingingCharacter>(
-          value: SingingCharacter.lafayette,
-          groupValue: _character,
-          onChanged: (SingingCharacter? value) {
-            setState(() {
-              _character = value;
-            });
-          },
-        ),
-      ],
     );
   }
 }

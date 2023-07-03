@@ -15,13 +15,11 @@ class OutletStateAdded extends OutletState {
   const OutletStateAdded({
     required this.outlet,
     required this.date,
-    required this.month,
     required this.numberToday,
     required this.numberThisMonth,
   });
   final String date;
-  final String month;
-  final String numberToday;
-  final String numberThisMonth;
+  final int numberToday;
+  final int numberThisMonth;
   final Outlet outlet;
 }

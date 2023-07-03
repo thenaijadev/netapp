@@ -21,13 +21,13 @@ class Options extends StatelessWidget {
                 child: Column(
                   children: [
                     const TextWidget(
-                      text: "Login to GDN Portal!",
+                      text: "Welcome",
                       color: AppColors.titleBlack,
                       fontSize: 30,
                     ),
                     const SizedBox(height: 20),
                     const TextWidget(
-                      text: "Enter your email & password to login",
+                      text: "What do you want to do?",
                       color: AppColors.titleBlack,
                       fontSize: 15,
                     ),
