@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:netapp/utilities/constants.dart/app_colors.dart';
 
 class HeaderUnderline extends StatelessWidget {
-  const HeaderUnderline({super.key});
+  const HeaderUnderline({super.key, this.height = 5, this.color});
+
+  final double height;
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -10,21 +14,21 @@ class HeaderUnderline extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          height: 5,
+          height: height,
           width: 100,
           decoration: const BoxDecoration(
             color: AppColors.hintColor,
           ),
         ),
         Container(
-          height: 5,
+          height: height,
           width: 150,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 0, 44, 139),
+          decoration: BoxDecoration(
+            color: color ?? const Color.fromARGB(255, 0, 44, 139),
           ),
         ),
         Container(
-          height: 5,
+          height: height,
           width: 100,
           decoration: const BoxDecoration(
             color: AppColors.hintColor,

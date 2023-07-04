@@ -149,8 +149,8 @@ class HorizontalDivider extends StatelessWidget {
 
 class DataRowWidget extends StatelessWidget {
   const DataRowWidget({super.key, required this.label, required this.value});
-  final String label;
-  final String value;
+  final String? label;
+  final String? value;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -158,15 +158,25 @@ class DataRowWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextWidget(
-            text: label,
-            fontWeight: FontWeight.bold,
-            fontSize: 13,
+          SizedBox(
+            width: 80,
+            child: SingleChildScrollView(
+              child: TextWidget(
+                text: label!,
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
+            ),
           ),
           const SizedBox(
             width: 30,
           ),
-          TextWidget(text: value, fontSize: 13)
+          SizedBox(
+            width: 80,
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: TextWidget(text: value!, fontSize: 13)),
+          )
         ],
       ),
     );

@@ -154,46 +154,46 @@ class _TradeVisitFormState extends ConsumerState<TradeVisitForm> {
               const SizedBox(
                 height: 20,
               ),
-              const TextWidget(
-                text: "Competition review (Not mandatory)",
-                fontSize: 18,
-              ),
-              InputFieldWidget(
-                  label: "What brand is activated",
-                  hintText: "",
-                  onChanged: (val) {},
-                  textFieldkey: formfieldkey_3),
-              InputFieldWidget(
-                  label: "What activation",
-                  hintText: "",
-                  onChanged: (val) {},
-                  textFieldkey: formfieldkey_4),
-              InputFieldWidget(
-                  label: "Additional information",
-                  hintText: "",
-                  onChanged: (val) {},
-                  textFieldkey: formfieldkey_5),
-              const Padding(
-                padding: EdgeInsets.only(right: 180.0, top: 20),
-                child: TextWidget(
-                  text: "Add an image",
-                  color: Color.fromARGB(255, 110, 111, 117),
-                  fontSize: 14,
-                ),
-              ),
+              // const TextWidget(
+              //   text: "Competition review (Not mandatory)",
+              //   fontSize: 18,
+              // ),
+              // InputFieldWidget(
+              //     label: "What brand is activated",
+              //     hintText: "",
+              //     onChanged: (val) {},
+              //     textFieldkey: formfieldkey_3),
+              // InputFieldWidget(
+              //     label: "What activation",
+              //     hintText: "",
+              //     onChanged: (val) {},
+              //     textFieldkey: formfieldkey_4),
+              // InputFieldWidget(
+              //     label: "Additional information",
+              //     hintText: "",
+              //     onChanged: (val) {},
+              //     textFieldkey: formfieldkey_5),
+              // const Padding(
+              //   padding: EdgeInsets.only(right: 180.0, top: 20),
+              //   child: TextWidget(
+              //     text: "Add an image",
+              //     color: Color.fromARGB(255, 110, 111, 117),
+              //     fontSize: 14,
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 240, top: 10),
+              //   child: GestureDetector(
+              //     onTap: () {},
+              //     child: const CircleAvatar(
+              //       backgroundColor: Color.fromARGB(255, 0, 44, 139),
+              //       radius: 15,
+              //       child: Center(child: Icon(Icons.add)),
+              //     ),
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(right: 240, top: 10),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 0, 44, 139),
-                    radius: 15,
-                    child: Center(child: Icon(Icons.add)),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0, top: 30),
+                padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                 child: Container(
                   width: 272,
                   height: 50,

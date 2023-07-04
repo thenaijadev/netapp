@@ -135,7 +135,7 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                                 ),
                               ]),
                           SizedBox(
-                            height: 1550,
+                            height: 1200,
                             child: TabBarView(
                               physics: const NeverScrollableScrollPhysics(),
                               controller: controller,

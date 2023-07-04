@@ -55,6 +55,7 @@ dependencies:
   geolocator: ^9.0.2
   smooth_page_indicator: ^1.1.0
   flutter_riverpod: ^2.3.6
+  animation_search_bar: ^0.0.10
 
 dev_dependencies:
   flutter_test:
