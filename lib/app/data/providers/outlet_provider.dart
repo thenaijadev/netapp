@@ -10,7 +10,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
   Outlet? get outlet => _outlet;
 
   final List<Product> _products = [];
-  final List<Outlet> _outlets = [];
+  List<Outlet> _outlets = [];
 
   List<Outlet> get outlets => _outlets;
 
@@ -47,6 +47,8 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
         managerPhoneNumber: managerPhoneNumber,
         supplier: supplier);
     state.add(_outlet!);
+    _outlets = state;
+    print(state);
   }
 
   void addProductToList(
@@ -83,5 +85,6 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
     stateList.removeAt(stateList.length - 1);
     stateList.add(updatedItem);
     state = stateList;
+    print(state);
   }
 }

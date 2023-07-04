@@ -6,4 +6,5 @@ class Routes {
   static const String dataCapture = '/dataCapture';
   static const String options = "/options";
   static const String outlets = "/outlets";
+  static const String productsTable = "/productsTable";
 }

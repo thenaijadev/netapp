@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:netapp/app/bloc/products/products_bloc.dart';
+
 import 'package:netapp/app/presentation/widgets/buttom_sheet_widget.dart';
 import 'package:netapp/app/presentation/widgets/loading.dart';
 import 'package:netapp/app/presentation/widgets/title_text.dart';
@@ -11,7 +12,9 @@ import 'package:netapp/utilities/router/routes.dart';
 import 'package:netapp/utilities/snackbar.dart';
 
 class ProductsScreen extends StatefulWidget {
-  const ProductsScreen({super.key});
+  const ProductsScreen({
+    super.key,
+  });
 
   @override
   State<ProductsScreen> createState() => _ProductsScreenState();

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:netapp/app/data/models/outlet.dart';
 import 'package:netapp/app/presentation/screens/details.dart';
 import 'package:netapp/app/presentation/screens/error.dart';
 import 'package:netapp/app/presentation/screens/home.dart';
 import 'package:netapp/app/presentation/screens/new/data_capture_form.dart';
 import 'package:netapp/app/presentation/screens/new/options.dart';
-import 'package:netapp/app/presentation/screens/new/outlet_data.dart';
+import 'package:netapp/app/presentation/screens/new/outlet_table.dart';
+import 'package:netapp/app/presentation/screens/new/product_table.dart';
 import 'package:netapp/app/presentation/screens/new/today_details.dart';
 import 'package:netapp/app/presentation/screens/products.dart';
 import 'package:netapp/utilities/router/routes.dart';
@@ -19,7 +21,7 @@ class AppRouter {
         );
       case Routes.products:
         return MaterialPageRoute(
-          builder: (_) => const ProductsScreen(),
+          builder: (_) => ProductsScreen(),
         );
       case Routes.todayDetails:
         return MaterialPageRoute(
@@ -45,9 +47,16 @@ class AppRouter {
 
       case Routes.outlets:
         return MaterialPageRoute(
-          builder: (_) => const OutletData(),
+          builder: (_) => const OutletTable(),
         );
+      case Routes.productsTable:
+        var data = routeSettings.arguments as Outlet;
 
+        return MaterialPageRoute(
+          builder: (_) => ProductsTable(
+            outlet: data,
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const ErrorScreen(),

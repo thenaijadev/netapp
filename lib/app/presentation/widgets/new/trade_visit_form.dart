@@ -7,6 +7,7 @@ import 'package:netapp/app/presentation/widgets/title_text.dart';
 import 'package:netapp/app/providers/state_providers.dart';
 import 'package:netapp/utilities/constants.dart/app_colors.dart';
 import 'package:netapp/utilities/lists.dart';
+import 'package:netapp/utilities/router/routes.dart';
 
 class TradeVisitForm extends ConsumerStatefulWidget {
   const TradeVisitForm({
@@ -209,7 +210,7 @@ class _TradeVisitFormState extends ConsumerState<TradeVisitForm> {
                         ),
                       ),
                       onPressed: () {
-                        // Navigator.pushNamed(context, Routes.outlets);
+                        Navigator.pushNamed(context, Routes.outlets);
                         outlet.addProductToList(
                             price: double.parse(
                                 formfieldkey_1.currentState?.value),
