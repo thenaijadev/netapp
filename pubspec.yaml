@@ -56,6 +56,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_riverpod: ^2.3.6
   animation_search_bar: ^0.0.10
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -216,14 +216,14 @@ class _TradeVisitFormState extends ConsumerState<TradeVisitForm> {
                                 formfieldkey_1.currentState?.value),
                             newPrice: double.parse(
                                 formfieldkey_2.currentState?.value),
-                            brand: brand,
-                            isOutOfStock: isOutOfStock,
-                            isNewListing: isNew,
-                            hasPriceChanged: hasPriceChanged,
+                            brand: brand!,
+                            isOutOfStock: isOutOfStock!,
+                            isNewListing: isNew!,
+                            hasPriceChanged: hasPriceChanged!,
                             sku: sku,
                             category: getCategory(sku),
                             channel: getChannel(sku),
-                            isAvailable: isBrandAvailable);
+                            isAvailable: isBrandAvailable!);
                       },
                       child: const TextWidget(
                         text: "Next",

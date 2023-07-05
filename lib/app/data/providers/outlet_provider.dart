@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:netapp/app/data/models/outlet.dart';
 import 'package:netapp/app/data/models/product.dart';
 
@@ -15,6 +16,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
   List<Outlet> get outlets => _outlets;
 
   List<Product> get products => _products;
+  final outletBox = Hive.box("outlet_box");
 
   void createOutlet(
       {required date,
@@ -30,7 +32,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
       required subChannel,
       required managerName,
       required managerPhoneNumber,
-      required supplier}) {
+      required supplier}) async {
     _outlet = Outlet(
         date: date,
         capturedBy: capturedBy,
@@ -46,9 +48,16 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
         managerName: managerName,
         managerPhoneNumber: managerPhoneNumber,
         supplier: supplier);
-    state.add(_outlet!);
+    // state.add(_outlet!);
+
+    outletBox.add(_outlet?.toMap());
+
+    List<Outlet> theOutLets = await getOutlets();
+
+    state = theOutLets;
     _outlets = state;
-    print(state);
+    // state = theOutLets;
+    // _outlets = state;
   }
 
   void addProductToList(
@@ -62,7 +71,7 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
       required price,
       required hasPriceChanged,
       required newPrice,
-      image}) {
+      image}) async {
     final Product product = Product(
         channel: channel,
         brand: brand,
@@ -77,14 +86,27 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
         image: image);
 
     products.add(product);
-    List<Outlet> stateList = state;
+    List<Outlet> stateList = await getOutlets();
 
     final lastItem = stateList.last;
     final updatedItem = lastItem.copyWith(products: products);
+    int index = stateList.length - 1;
+    print(updatedItem.toMap());
 
-    stateList.removeAt(stateList.length - 1);
-    stateList.add(updatedItem);
-    state = stateList;
-    print(state);
+    final data = updatedItem.toMap();
+    await outletBox.put(index, data);
+
+    // List<Outlet> newOutlets = await getOutlets();
+    // state = newOutlets;
+  }
+
+  Future<List<Outlet>> getOutlets() async {
+    List<Outlet> list = [];
+    for (var key in outletBox.keys) {
+      var dataAsMap = outletBox.getAt(key) as Map<dynamic, dynamic>;
+      var dataAsOutlet = Outlet.fromMap(dataAsMap);
+      list.add(dataAsOutlet);
+    }
+    return list;
   }
 }

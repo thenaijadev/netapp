@@ -60,7 +60,7 @@ class Options extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, Routes.outlets);
+                        Navigator.pushNamed(context, Routes.outlets);
                       },
                       style: ButtonStyle(
                           fixedSize:
