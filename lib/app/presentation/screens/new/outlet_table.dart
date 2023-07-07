@@ -29,8 +29,9 @@ class _OutletDataState extends ConsumerState<OutletTable> {
   @override
   Widget build(BuildContext context) {
     final outlet = ref.watch(outletProvider.notifier);
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
       outlet.getOutlets();
+      setState(() {});
     });
     return Scaffold(
       resizeToAvoidBottomInset: false,

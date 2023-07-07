@@ -24,14 +24,15 @@ class _ProductsTableState extends State<ProductsTable> {
   @override
   void initState() {
     products = widget.outlet.products;
-
+    Future.delayed(const Duration(seconds: 1), () {
+      setState(() {});
+    });
     controller = TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    setState(() {});
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(

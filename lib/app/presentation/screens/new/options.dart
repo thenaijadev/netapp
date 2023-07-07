@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:netapp/app/presentation/widgets/title_text.dart';
-import 'package:netapp/app/providers/state_providers.dart';
 import 'package:netapp/utilities/constants.dart/app_colors.dart';
 import 'package:netapp/utilities/router/routes.dart';
 
@@ -34,11 +33,9 @@ class Options extends ConsumerWidget {
                       fontSize: 15,
                     ),
                     const SizedBox(height: 50),
-
                     const SizedBox(
                       height: 30,
                     ),
-
                     const SizedBox(
                       height: 20,
                     ),
@@ -61,7 +58,7 @@ class Options extends ConsumerWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () async {
+                      onPressed: () {
                         Navigator.pushNamed(context, Routes.outlets);
                       },
                       style: ButtonStyle(
@@ -89,7 +86,7 @@ class Options extends ConsumerWidget {
                     //   child: const Padding(
                     //     padding: EdgeInsets.symmetric(horizontal: 60.0),
                     //     child: TextWidget(
-                    //       text: "Register New Outlet",
+                    //       text: "Competition",
                     //       color: Colors.white,
                     //       fontWeight: FontWeight.w400,
                     //     ),

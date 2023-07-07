@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:netapp/app/presentation/screens/new/today_details.dart';
+import 'package:netapp/app/presentation/widgets/new/competition_review_form.dart';
 import 'package:netapp/app/presentation/widgets/new/header_underLine.dart';
 import 'package:netapp/app/presentation/widgets/new/outlet_details_form.dart';
 import 'package:netapp/app/presentation/widgets/new/trade_visit_form.dart';
@@ -25,7 +26,7 @@ class _DataCatureScreenState extends State<DataCatureScreen>
   @override
   void initState() {
     _stopWatchTimer.onStartTimer();
-    controller = TabController(length: 2, vsync: this);
+    controller = TabController(length: 3, vsync: this);
     getLocation();
     super.initState();
   }
@@ -133,6 +134,10 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                                   text: "Trade visit",
                                   fontSize: 14,
                                 ),
+                                TextWidget(
+                                  text: "Competition Review",
+                                  fontSize: 14,
+                                ),
                               ]),
                           SizedBox(
                             height: 1200,
@@ -150,6 +155,7 @@ class _DataCatureScreenState extends State<DataCatureScreen>
                                   },
                                 ),
                                 const PageViewWidget(),
+                                const CompetitionReviewForm()
                               ],
                             ),
                           ),
