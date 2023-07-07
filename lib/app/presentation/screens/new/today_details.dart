@@ -174,8 +174,9 @@ class DataRowWidget extends StatelessWidget {
           SizedBox(
             width: 80,
             child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: TextWidget(text: value!, fontSize: 13)),
+              scrollDirection: Axis.horizontal,
+              child: TextWidget(text: value!, fontSize: 13),
+            ),
           )
         ],
       ),

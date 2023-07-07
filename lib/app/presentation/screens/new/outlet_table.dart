@@ -22,13 +22,16 @@ class _OutletDataState extends ConsumerState<OutletTable> {
   @override
   void initState() {
     controller = TextEditingController();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final outlet = ref.read(outletProvider.notifier);
-
+    final outlet = ref.watch(outletProvider.notifier);
+    Future.delayed(const Duration(seconds: 3), () {
+      outlet.getOutlets();
+    });
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -90,8 +93,8 @@ class MobileDataTable extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
-                const TextWidget(
-                  text: "Okwor outlet",
+                TextWidget(
+                  text: outletList[index].name!,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -144,7 +147,8 @@ class MobileDataTable extends StatelessWidget {
               label: "Latitude", value: outletList[index].latitude.toString()),
           const HeaderUnderline(height: 1, color: AppColors.hintColor),
           DataRowWidget(
-              label: "Longitude", value: outletList[index].latitude.toString()),
+              label: "Longitude",
+              value: outletList[index].longitude.toString()),
           const HeaderUnderline(height: 1, color: AppColors.hintColor),
         ],
       ),

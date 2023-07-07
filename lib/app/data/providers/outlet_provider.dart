@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:netapp/app/data/models/outlet.dart';
 import 'package:netapp/app/data/models/product.dart';
+import 'package:netapp/utilities/logger.dart';
 
 class OutletNotifier extends StateNotifier<List<Outlet>> {
   Outlet? _outlet;
@@ -91,22 +92,26 @@ class OutletNotifier extends StateNotifier<List<Outlet>> {
     final lastItem = stateList.last;
     final updatedItem = lastItem.copyWith(products: products);
     int index = stateList.length - 1;
-    print(updatedItem.toMap());
 
     final data = updatedItem.toMap();
     await outletBox.put(index, data);
 
-    // List<Outlet> newOutlets = await getOutlets();
-    // state = newOutlets;
+    List<Outlet> newOutlets = await getOutlets();
+    logger.e(newOutlets);
+    state = newOutlets;
+    _outlets = state;
   }
 
   Future<List<Outlet>> getOutlets() async {
     List<Outlet> list = [];
     for (var key in outletBox.keys) {
-      var dataAsMap = outletBox.getAt(key) as Map<dynamic, dynamic>;
+      var dataAsMap = await outletBox.getAt(key);
       var dataAsOutlet = Outlet.fromMap(dataAsMap);
       list.add(dataAsOutlet);
     }
+
+    state = list;
+    _outlets = state;
     return list;
   }
 }

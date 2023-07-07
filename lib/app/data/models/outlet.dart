@@ -101,13 +101,14 @@ class Outlet {
   }
 
   factory Outlet.fromMap(Map<dynamic, dynamic> map) {
-    List<Product> list = [];
+    List<Product>? list = [];
     if (map["products"] != null) {
-      map["products"].forEach((Map<dynamic, dynamic> item) {
+      map["products"].forEach((dynamic item) {
         final productItem = Product.fromMap(item);
         list.add(productItem);
       });
     }
+
     return Outlet(
       date: map['date'] != null ? map['date'] as String : null,
       capturedBy:
@@ -128,7 +129,7 @@ class Outlet {
           ? map['managerPhoneNumber'] as String
           : null,
       supplier: map['supplier'] != null ? map['supplier'] as String : null,
-      products: map['products'] != null ? list : null,
+      products: map['products'] != null ? list : [],
     );
   }
 
