@@ -9,7 +9,7 @@ class TextWidget extends StatelessWidget {
       this.fontWeight = FontWeight.normal,
       this.color = AppColors.titleBlack,
       this.textAlign});
-  final String text;
+  final String? text;
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
@@ -17,7 +17,7 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       textAlign: textAlign,
       style: TextStyle(
           color: color,
